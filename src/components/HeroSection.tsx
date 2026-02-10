@@ -60,7 +60,7 @@ const HeroSection = () => {
 
           {/* Description */}
           <p
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 animate-fade-in-up"
+            className="space-y-6 text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 animate-fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
             Transforming ideas into manufacturing-ready designs. Specializing in
