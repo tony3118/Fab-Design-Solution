@@ -69,7 +69,7 @@ const HeroSection = () => {
           </p>
 
           {/* CTA Buttons - positioned lower */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-24 md:-mt-20 animate-fade-in-up" style={{ animationDelay: "1.3s" }}>
+          <div className="flex flex-col sm:flex-row gap-4 mt-8 animate-fade-in-up" style={{ animationDelay: "1.3s" }}>
             <Button size="lg" asChild className="group">
               <a href="#portfolio">
                 View Portfolio
