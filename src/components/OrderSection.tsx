@@ -33,13 +33,13 @@ const OrderSection = () => {
 
   const checkLogin = async (): Promise<boolean> => {
     const res = await fetch(
-      "/client-area/check-auth.php",
+      "http://localhost/client-area/check-auth.php",
       { credentials: "include" }
     );
     const data = await res.json();
 
     if (!data.loggedIn) {
-      window.location.href = "/client-area/auth.php";
+      window.location.href = "http://localhost/client-area/auth.php";
       return false;
     }
 

@@ -30,7 +30,7 @@ const App = () => (
           {/* TRANSPARENCY OVERLAY */}
           <div className="fixed inset-0 -z-10 bg-black/40 dark:bg-black/50" />
 
-          <BrowserRouter basename="/client-area/app">
+          <BrowserRouter basename="/">
             <Routes>
               <Route path="/" element={<Index />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

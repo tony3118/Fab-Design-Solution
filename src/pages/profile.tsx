@@ -28,12 +28,12 @@ const Profile = () => {
   const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("/client-area/profile.php", {
+    fetch("http://localhost/client-area/profile.php", {
       credentials: "include",
     })
       .then(res => {
         if (res.status === 401) {
-          window.location.href = "/client-area/auth.php";
+          window.location.href = "http://localhost/client-area/auth.php";
           return;
         }
         return res.json();
@@ -75,7 +75,7 @@ const Profile = () => {
 
 
     const res = await fetch(
-      "/client-area/profile.php",
+      "http://localhost/client-area/profile.php",
       {
         method: "POST",
         body: formData,

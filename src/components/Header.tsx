@@ -26,7 +26,7 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     document.addEventListener("click", handleClickOutside);
 
-    fetch("/client-area/check-auth.php", {
+    fetch("http://localhost/client-area/check-auth.php", {
       credentials: "include",
     })
       .then(res => res.json())
@@ -48,7 +48,7 @@ const Header = () => {
   ];
 
   const handlePlaceOrder = async () => {
-    const res = await fetch("/client-area/check-auth.php", {
+    const res = await fetch("http://localhost/client-area/check-auth.php", {
       credentials: "include",
     });
     const data = await res.json();
@@ -56,7 +56,7 @@ const Header = () => {
     if (!data.loggedIn) {
       // store intent in backend via auth.php
       window.location.href =
-        "/client-area/auth.php?redirect=order";
+        "http://localhost/client-area/auth.php?redirect=order";
     } else {
       document.getElementById("order")?.scrollIntoView({ behavior: "smooth" });
     }
@@ -105,7 +105,7 @@ const Header = () => {
           <div className="hidden md:flex items-center gap-4 relative">
             {!isLoggedIn ? (
               <a
-                href="/client-area/auth.php"
+                href="http://localhost/client-area/auth.php"
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 GET STARTED
@@ -157,7 +157,7 @@ const Header = () => {
 
                     <button
                       onClick={() => {
-                        window.location.href = "/client-area/logout.php";
+                        window.location.href = "http://localhost/client-area/logout.php";
                       }}
                       className="w-full flex items-center gap-2 px-4 py-3 text-sm hover:bg-muted transition-colors"
                     >
@@ -243,7 +243,7 @@ const Header = () => {
 
               <button
                 onClick={() => {
-                  window.location.href = "/client-area/logout.php";
+                  window.location.href = "http://localhost/client-area/logout.php";
                 }}
                 className="text-lg font-medium text-red-500 hover:text-red-600 transition-colors"
               >
@@ -255,7 +255,7 @@ const Header = () => {
 
           {!isLoggedIn && (
             <a
-              href="/client-area/auth.php"
+              href="http://localhost/client-area/auth.php"
               className="text-lg font-medium text-foreground hover:text-primary transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
