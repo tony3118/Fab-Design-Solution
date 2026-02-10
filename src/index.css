@@ -1,6 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&display=swap");
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+
 @font-face {
   font-family: 'Rawkbrush';
   src: url('/fonts/Rawkbrush.otf') format('opentype');
@@ -282,4 +288,14 @@ All colors MUST be HSL.
 .animate-handwriting {
   clip-path: inset(0 100% 0 0);
   animation: handwritingReveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+/* Allow header clicks always */
+header {
+  pointer-events: auto !important;
+}
+
+/* Prevent background layers from blocking clicks */
+section::before,
+section::after {
+  pointer-events: none;
 }

@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Profile from "./pages/profile";
 
 const queryClient = new QueryClient();
 
@@ -23,13 +24,13 @@ const App = () => (
           {/* BACKGROUND IMAGE */}
           <div
             className="fixed inset-0 -z-10 bg-cover bg-center"
-            style={{ backgroundImage: "url('/bg-pattern.png')" }}
+            style={{ backgroundImage: `url(${import.meta.env.BASE_URL}bg-pattern.png)` }}
           />
 
           {/* TRANSPARENCY OVERLAY */}
           <div className="fixed inset-0 -z-10 bg-black/40 dark:bg-black/50" />
 
-          <BrowserRouter>
+          <BrowserRouter basename="/client-area/app">
             <Routes>
               <Route path="/" element={<Index />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
@@ -41,6 +42,8 @@ const App = () => (
                   <AdminDashboard />
                 </RequireAdminAuth>
               }/>
+              <Route path="/" element={<Index />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

@@ -31,53 +31,73 @@ const OrderSection = () => {
     return () => observer.disconnect();
   }, []);
 
+  const checkLogin = async (): Promise<boolean> => {
+    const res = await fetch(
+      "/client-area/check-auth.php",
+      { credentials: "include" }
+    );
+    const data = await res.json();
+
+    if (!data.loggedIn) {
+      window.location.href = "/client-area/auth.php";
+      return false;
+    }
+
+    return true;
+  };
+
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const isLoggedIn = await checkLogin();
+    if (!isLoggedIn) return;
+
     setIsSubmitting(true);
 
     const form = e.currentTarget;
-  const formData = new FormData(form);
+    const formData = new FormData(form);
 
-  try {
-    const res = await fetch(
-      "http://localhost/backend/create_order.php",
-      {
-        method: "POST",
-        body: formData,
+    try {
+      const res = await fetch(
+        "/backend/create_order.php",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const text = await res.text();
+      console.log("RAW RESPONSE:", text);
+
+      const result = JSON.parse(text);
+
+      if (result.status === "success") {
+        toast({
+          title: "Order Submitted!",
+          description: "Thank you for your inquiry. I'll get back to you within 24 hours.",
+        });
+        form.reset();
+        setIsSubmitted(true);
+        setTimeout(() => setIsSubmitted(false), 3000);
+      } else {
+        toast({ title: result.message || "Submission failed" });
       }
-    );
-
-    const text = await res.text();
-    console.log("RAW RESPONSE:", text);
-
-    const result = JSON.parse(text);
-
-    if (result.status === "success") {
-      toast({
-        title: "Order Submitted!",
-        description: "Thank you for your inquiry. I'll get back to you within 24 hours.",
-      });
-      form.reset();
-      setIsSubmitted(true);
-      setTimeout(() => setIsSubmitted(false), 3000);
-    } else {
-      toast({ title: result.message || "Submission failed" });
+    } catch (err) {
+      console.error("BACKEND ERROR:", err);
+      toast({ title: "Backend error" });
+    } finally {
+      setIsSubmitting(false);
     }
-  } catch (err) {
-    console.error("BACKEND ERROR:", err);
-    toast({ title: "Backend error" });
-  } finally {
-    setIsSubmitting(false);
-  }
   };
 
   return (
     <section
       id="order"
       ref={sectionRef}
-      className="py-24 bg-transparent mx-6 md:mx-12 rounded-2xl"
+      className="relative z-[50] pointer-events-auto py-24 bg-transparent mx-6 md:mx-12 rounded-2xl pointer-events-none"
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Info Side */}
           <div className={`${isVisible ? "animate-slide-in-left" : "opacity-0"}`}>
@@ -89,8 +109,8 @@ const OrderSection = () => {
               <span className="text-gradient">Product to Life?</span>
             </h2>
             <p className="text-muted-foreground mb-8 leading-relaxed">
-              Share your project requirements and I'll provide a detailed proposal 
-              tailored to your needs. From initial concepts to production-ready designs, 
+              Share your project requirements and I'll provide a detailed proposal
+              tailored to your needs. From initial concepts to production-ready designs,
               let's create something exceptional together.
             </p>
 

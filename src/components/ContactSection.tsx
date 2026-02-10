@@ -50,41 +50,61 @@ const ContactSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  setIsSubmitting(true);
-
-  const form = e.currentTarget; // ✅ SAVE REFERENCE
-  const formData = new FormData(form);
-
-  try {
+  const checkLogin = async (): Promise<boolean> => {
     const res = await fetch(
-      "http://localhost/backend/create_contact.php",
-      {
-        method: "POST",
-        body: formData,
-      }
+      "/client-area/check-auth.php",
+      { credentials: "include" }
     );
+    const data = await res.json();
 
-    const text = await res.text();
-    console.log("RAW RESPONSE:", text);
-
-    const result = JSON.parse(text);
-
-    if (result.status === "success") {
-      window.open(result.whatsapp_url, "_blank");
-      toast({ title: "Message sent successfully!" });
-      form.reset(); // ✅ SAFE NOW
-    } else {
-      toast({ title: result.message || "Failed" });
+    if (!data.loggedIn) {
+      window.location.href = "/client-area/auth.php";
+      return false;
     }
-  } catch (err) {
-    console.error("BACKEND ERROR:", err);
-    toast({ title: "Backend error" });
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+
+    return true;
+  };
+
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const isLoggedIn = await checkLogin();
+    if (!isLoggedIn) return;
+
+    setIsSubmitting(true);
+
+    const form = e.currentTarget; // ✅ SAVE REFERENCE
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch(
+        "/backend/create_contact.php",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const text = await res.text();
+      console.log("RAW RESPONSE:", text);
+
+      const result = JSON.parse(text);
+
+      if (result.status === "success") {
+        window.open(result.whatsapp_url, "_blank");
+        toast({ title: "Message sent successfully!" });
+        form.reset(); // ✅ SAFE NOW
+      } else {
+        toast({ title: result.message || "Failed" });
+      }
+    } catch (err) {
+      console.error("BACKEND ERROR:", err);
+      toast({ title: "Backend error" });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
 
 
