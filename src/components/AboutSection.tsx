@@ -78,12 +78,12 @@ const AboutSection = () => {
             <p className="text-muted-foreground mb-8 leading-relaxed">
               I can complete your fixture design project efficiently and deliver precise results within the timeline.
               Looking forward to collaborating with you on this project.
-              <ul>
+            </p>
+            <ul>
               <li>Thank you!</li>
               <li>Best regards,</li>
               <li>Nitin Kumar</li>
-              </ul>
-            </p>
+            </ul>
 
             {/* Skills Grid */}
             <div className="grid sm:grid-cols-2 gap-3 mb-8">

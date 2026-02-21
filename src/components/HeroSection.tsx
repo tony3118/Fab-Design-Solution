@@ -1,6 +1,6 @@
 import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-products.png";
+import heroImage from "@/assets/hero-product.mp4";
 
 const HeroSection = () => {
   return (
@@ -8,15 +8,19 @@ const HeroSection = () => {
       id="home"
       className="relative min-h-screen flex items-center overflow-x-hidden"
     >
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={heroImage}
-          alt="Industrial Product Design"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/50 to-transparent" />
-      </div>
+      {/* 🎥 VIDEO BACKGROUND */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover object-[90%_center] -z-10 md:object-center"
+      >
+        <source src="/videos/hero-product.mp4" type="video/mp4" />
+      </video>
+
+      {/* DARK OVERLAY */}
+      <div className="absolute inset-0 bg-black/50 -z-10"></div>
 
       {/* Content */}
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16 relative z-10 pt-20">
@@ -24,31 +28,31 @@ const HeroSection = () => {
           {/* Main Headline - BEGG Style */}
           <div className="relative">
             <h1 className="font-display font-bold uppercase leading-[0.95] tracking-tight">
-  
-              <span 
+
+              <span
                 className="block text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[6rem] text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.3)] animate-fade-in-up"
                 style={{ animationDelay: "0.15s" }}
               >
                 your requirement,
               </span>
-              <span 
+              <span
                 className="block text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[6rem] text-white/70 drop-shadow-[0_4px_20px_rgba(0,0,0,0.3)] animate-fade-in-up pl-8 md:pl-16 lg:pl-24"
                 style={{ animationDelay: "0.3s" }}
               >
                 our commitment
               </span>
             </h1>
-            
+
             {/* Handwritten Tagline - Overlapping the headline */}
             <div className="relative -mt-4 md:-mt-8">
               <p className="font-handwritten text-foreground drop-shadow-[0_2px_10px_rgba(0,0,0,0.2)]">
-                <span 
+                <span
                   className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl -rotate-3 animate-handwriting"
                   style={{ animationDelay: "0.5s" }}
                 >
                   Design Build
                 </span>
-                <span 
+                <span
                   className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl pl-6 sm:pl-20 md:pl-36 lg:pl-44 -rotate-2 animate-handwriting"
                   style={{ animationDelay: "0.9s" }}
                 >

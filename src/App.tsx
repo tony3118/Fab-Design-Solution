@@ -30,19 +30,18 @@ const App = () => (
           {/* TRANSPARENCY OVERLAY */}
           <div className="fixed inset-0 -z-10 bg-black/40 dark:bg-black/50" />
 
-          <BrowserRouter basename="/">
+          <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="/admin" element={<AdminLogin />} />
               <Route
-              path="/admin/dashboard"
-              element={
-                <RequireAdminAuth>
-                  <AdminDashboard />
-                </RequireAdminAuth>
-              }/>
-              <Route path="/" element={<Index />} />
+                path="/admin/dashboard"
+                element={
+                  <RequireAdminAuth>
+                    <AdminDashboard />
+                  </RequireAdminAuth>
+                } />
               <Route path="/profile" element={<Profile />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

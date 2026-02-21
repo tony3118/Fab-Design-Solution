@@ -190,7 +190,7 @@ const PortfolioSection = () => {
         {/* Header */}
         <div className={`text-center max-w-2xl mx-auto mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-4">
-            My Work
+            Our Work
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Featured{" "}
@@ -283,12 +283,12 @@ const PortfolioSection = () => {
               </div>
             )}
 
-          <div className="relative rounded-xl p-8">
+            <div className="relative rounded-xl p-8">
 
-            {/* DESKTOP CLOSE BUTTON */}
-            <button
-              onClick={() => setSelectedItem(null)}
-              className="
+              {/* DESKTOP CLOSE BUTTON */}
+              <button
+                onClick={() => setSelectedItem(null)}
+                className="
     hidden md:flex
     absolute top-4 right-4 z-50
     rounded-full
@@ -299,18 +299,18 @@ const PortfolioSection = () => {
     hover:bg-muted
     transition
   "
-              aria-label="Close"
-            >
-              <X className="w-5 h-5" />
-            </button>
+                aria-label="Close"
+              >
+                <X className="w-5 h-5" />
+              </button>
 
 
-            {/* MOBILE CLOSE BUTTON */}
-            {isMobile && (
-              <div className="absolute top-4 right-4 z-50">
-              <button
-                onClick={() => setSelectedItem(null)}
-                className="
+              {/* MOBILE CLOSE BUTTON */}
+              {isMobile && (
+                <div className="absolute top-4 right-4 z-50">
+                  <button
+                    onClick={() => setSelectedItem(null)}
+                    className="
       flex h-10 w-10 items-center justify-center
       rounded-full
       bg-background/90
@@ -319,13 +319,13 @@ const PortfolioSection = () => {
       active:scale-95
       transition
     "
-                aria-label="Close"
-              >
-                <X className="w-5 h-5" />
-              </button>
-             </div>
-            )}
-          </div>
+                    aria-label="Close"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+              )}
+            </div>
 
 
             <DialogHeader>

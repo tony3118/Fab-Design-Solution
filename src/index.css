@@ -1,9 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&display=swap");
 
-html, body {
+html,
+body {
   max-width: 100%;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 
@@ -209,11 +211,19 @@ All colors MUST be HSL.
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    background: linear-gradient(135deg, #f8fafc, #cbd5e1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  .light .text-gradient {
+    background: linear-gradient(135deg, #334155, #64748b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
 
   .glass-effect {
     background: hsl(var(--card) / 0.8);
@@ -226,6 +236,7 @@ All colors MUST be HSL.
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -236,6 +247,7 @@ All colors MUST be HSL.
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -247,6 +259,7 @@ All colors MUST be HSL.
     opacity: 0;
     transform: translateX(-50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -258,6 +271,7 @@ All colors MUST be HSL.
     opacity: 0;
     transform: translateX(50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -269,6 +283,7 @@ All colors MUST be HSL.
     opacity: 0;
     transform: scale(0.9);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -280,6 +295,7 @@ All colors MUST be HSL.
   0% {
     clip-path: inset(0 100% 0 0);
   }
+
   100% {
     clip-path: inset(0 0 0 0);
   }
@@ -289,6 +305,7 @@ All colors MUST be HSL.
   clip-path: inset(0 100% 0 0);
   animation: handwritingReveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+
 /* Allow header clicks always */
 header {
   pointer-events: auto !important;
@@ -298,4 +315,14 @@ header {
 section::before,
 section::after {
   pointer-events: none;
+}
+
+.success-box {
+  background: rgba(139, 124, 246, 0.1);
+  border: 1px solid #8b7cf6;
+  padding: 12px;
+  border-radius: 6px;
+  color: #8b7cf6;
+  margin-bottom: 15px;
+  font-size: 14px;
 }
